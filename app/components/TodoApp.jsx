@@ -60,7 +60,7 @@ var TodoApp = React.createClass({
       <div>
         <h1 className="page-title"> Todo App </h1>
 
-        <div class="grid-container">
+        <div className="grid-container">
           <div className="grid-x">
             <div className="cell small-centered small-11 medium-6 large-5">
               <div className="container">
