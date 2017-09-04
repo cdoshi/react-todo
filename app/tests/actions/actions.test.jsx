@@ -30,7 +30,7 @@ describe('Actions', () => {
     var action = {
       type: 'TOGGLE_SHOW_COMPLETED'
     };
-    var res = actions.showCompleted();
+    var res = actions.toggleShowCompleted();
 
     expect(res).toEqual(action);
   });
