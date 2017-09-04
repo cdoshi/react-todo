@@ -3,6 +3,10 @@ var reducers = require('reducers');
 var df = require('deep-freeze-strict');
 
 describe('Reducers', () => {
+  beforeEach(() => {
+    localStorage.removeItem('todos');
+  });
+
   describe('searchTextReducer', () => {
 
     it('should exist', () => {
@@ -65,6 +69,25 @@ describe('Reducers', () => {
 
       expect(res[0].completed).toBe(true);
       expect(res[0].completedAt).toBeA('number');
+    });
+
+    it('should add todos', () => {
+      var todos = [{
+        id: '1',
+        text: 'walk the dog',
+        completed: false,
+        createdAt: 123,
+        completedAt: undefined
+      }];
+      var action = {
+        type: 'ADD_TODOS',
+        todos
+      };
+
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(1);
+      expect(res[0]).toEqual(todos[0]);
     });
   });
 
