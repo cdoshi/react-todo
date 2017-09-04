@@ -34,5 +34,42 @@ describe('Reducers', () => {
     });
   });
 
+  describe('todosReducer', () => {
+    it('should add new todo', () => {
+      var action = {
+        type: 'ADD_TODO',
+        text: 'walk the dog'
+      };
 
+      var res = reducers.todosReducer(df([]), df(action));
+
+      expect(res.length).toEqual(1);
+      expect(res[0].text).toEqual(action.text);
+    });
+
+    it('should toggle todo', () => {
+      var todos = [{
+        id: '1',
+        text: 'walk the dog',
+        completed: false,
+        createdAt: 123,
+        completedAt: undefined
+      }];
+
+      var action = {
+        type: 'TOGGLE_TODO',
+        id: '1'
+      };
+
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res[0].completed).toBe(true);
+      expect(res[0].completedAt).toBeA('number');
+    });
+  });
+
+
+  // define todos array with realistic item
+  // generate action
+  // call reducer and assert completed
 });
