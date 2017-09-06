@@ -4,6 +4,7 @@ var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 
+import  * as actions from 'actions';
 var {AddTodo} = require('AddTodo');
 
 describe('AddTodo',() => {
@@ -17,10 +18,8 @@ describe('AddTodo',() => {
     var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
     var $el = $(ReactDOM.findDOMNode(addTodo));
     var todoText = 'Jump';
-    var action = {
-      type: 'ADD_TODO',
-      text: todoText
-    };
+    var action = actions.startAddTodo(todoText);
+    
 
     addTodo.refs.todoText.value = todoText;
     TestUtils.Simulate.submit($el.find('form')[0]);
