@@ -100,6 +100,28 @@ describe('Reducers', () => {
     });
   });
 
+  describe('authReducer', () => {
+    it('should exist', () => {
+      expect(reducers.authReducer).toExist();
+    });
+
+    it('should set auth on login', () => {
+      var action = {
+        type: 'LOGIN',
+        uid: 1
+      };
+      var res = reducers.authReducer(df({}),df(action));
+      expect(res.uid).toEqual(action.uid);
+    });
+    it('should return empty object on logout', () => {
+      var action = {
+        type: 'LOGOUT'
+      };
+      var res = reducers.authReducer(df({}), df(action));
+      expect(res).toEqual({});
+    });
+  });
+
 
   // define todos array with realistic item
   // generate action
